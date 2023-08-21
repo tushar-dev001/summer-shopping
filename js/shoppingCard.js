@@ -4,6 +4,8 @@ function handleBoxClick(data) {
   const selectedItems = document.getElementById("selected-items");
   const applyBtn = document.getElementById("apply-btn");
 
+//   console.log(data.parentNode.children[2].innerText.split(" ")[0]);
+
   const productsName = data.parentNode.children[1].innerText;
   const productsPrice = data.parentNode.children[2].innerText.split(" ")[0];
 
@@ -38,15 +40,21 @@ function handleApply(data) {
   const CouponCodeInput = data.parentNode.children[0];
   const appliedCouponCode = CouponCodeInput.value;
 
+    const productPrice = document.getElementById("product-price");
+
+ 
+    document.getElementById("product-price").innerText = totalAmount;
+
   if (appliedCouponCode === "SELL200") {
     const discountPercentage = 20;
     const discountedAmount = totalAmount * (discountPercentage / 100);
-    const discountedTotalAmount = totalAmount * (1 - discountPercentage / 100);
+    // const discountedTotalAmount = totalAmount * (1 - discountPercentage / 100);
+    const discountTotalAmount = totalAmount - discountedAmount
 
     couponCode.value = "";
 
     document.getElementById("total-price").innerText =
-      discountedTotalAmount.toFixed(2);
+    discountTotalAmount.toFixed(2);
     document.getElementById("products-discount").innerText =
       discountedAmount.toFixed(2);
   } else {
